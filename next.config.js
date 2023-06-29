@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  basePath: '/im-query-poc',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/im-query-poc' : '',
   images: {
     unoptimized: true,
   }
