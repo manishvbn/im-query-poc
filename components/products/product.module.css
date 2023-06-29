@@ -1,5 +1,3 @@
 .someCSSModulesClass :global .card {
-    margin: 1em;
-    padding-left: 0;
     border: 2px solid yellow;
 }

@@ -12,7 +12,7 @@ const Products = () => {
                 {
                     products && products.map(product => (
                         <li key={product.name} className="list-group-item">
-                            <Link href={`/products/${product.id}`}>{product.name}</Link>
+                            <Link href={`/products/${product.id}`} prefetch={false}>{product.name}</Link>
                         </li>
                     ))
                 }
