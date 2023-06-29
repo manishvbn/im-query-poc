@@ -1,6 +1,7 @@
 import React from "react";
 import { useGlobalState } from "../../state/store";
 import classes from './product.module.css';
+import Image from "next/image";
 
 export default function Product() {
     const product = useGlobalState().state.product;
@@ -9,7 +10,7 @@ export default function Product() {
         (product !== undefined) ? (
             <div className={classes.someCSSModulesClass}>
                 <div className="card" style={{ width: '300px' }}>
-                    <img
+                    <Image
                         src={product.imageUrl}
                         className="card-img-top"
                         alt={product.name}

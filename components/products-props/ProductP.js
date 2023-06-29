@@ -1,10 +1,11 @@
+import Image from "next/image";
 import React from "react";
 
 export default function ProductP(props) {
     return (
         (props.product !== undefined) ? (
             <div className="card" style={{ width: '300px' }}>
-                <img
+                <Image
                     src={props.product.imageUrl}
                     className="card-img-top"
                     alt={props.product.name}
