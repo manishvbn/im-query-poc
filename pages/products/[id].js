@@ -43,10 +43,10 @@ export default function ProductDetailsPage({ product, products }) {
 }
 
 export async function getServerSideProps({ req, res, params }) {
-    res.setHeader(
-        'Cache-Control',
-        'public, s-maxage=31536000, immutable'
-    );
+    // res.setHeader(
+    //     'Cache-Control',
+    //     'public, s-maxage=31536000, immutable'
+    // );
 
     const products = await getProducts();
     const product = products.find(p => p.id === params.id);
