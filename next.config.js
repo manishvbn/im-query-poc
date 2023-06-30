@@ -4,7 +4,8 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['images.unsplash.com'],
-  }
+  },
+  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://imquery.blob.core.windows.net/next/' : '',
 }
 
 module.exports = nextConfig
