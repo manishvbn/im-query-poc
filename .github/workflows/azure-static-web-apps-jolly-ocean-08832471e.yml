@@ -35,7 +35,7 @@ jobs:
         run: |
           # Execute your script or command here to determine the artifact path dynamically
           # Set the determined path to the `artifact_path` output variable
-          if [[ -d "build" ]]; then
+          if [[ -d ".next" ]]; then
             echo "::set-output name=artifact_path::$(pwd)/build"
           else
             echo "Artifact path not found"
