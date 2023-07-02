@@ -30,6 +30,12 @@ jobs:
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "" # Built app content directory - optional
+    
+      - name: Delete Existing Files in Blob
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az storage blob delete-batch --account-name imquery --account-key gyMeX+XDy5uD/V1BdYr4hN5BzDEeYnAOUoOStdrHLS5OPZBNgbcR9ThSrdMdhvU2y27pona66RU5+AStWJqMdA== --source next --pattern "*"
       - name: Determine Artifact Path
         id: determine_path
         run: |
