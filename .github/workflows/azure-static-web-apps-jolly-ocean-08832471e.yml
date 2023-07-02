@@ -36,7 +36,7 @@ jobs:
           # Execute your script or command here to determine the artifact path dynamically
           # Set the determined path to the `artifact_path` output variable
           if [[ -d ".next" ]]; then
-            echo "::set-output name=artifact_path::$(pwd)/build"
+            echo "::set-output name=artifact_path::$(pwd)/.next/static"
           else
             echo "Artifact path not found"
             exit 1
