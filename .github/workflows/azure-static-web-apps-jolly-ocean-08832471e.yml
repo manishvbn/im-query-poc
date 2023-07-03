@@ -18,6 +18,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -36,6 +37,7 @@ jobs:
         with:
           inlineScript: |
             az storage blob delete-batch --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --account-key ${{ secrets.STORAGE_ACCOUNT_KEY }} --source next --pattern "*"
+      
       - name: Determine Artifact Path
         id: determine_path
         run: |
@@ -47,12 +49,19 @@ jobs:
             echo "Artifact path not found"
             exit 1
           fi
-      - name: Upload Artifacts to Azure Storage
+
+      - name: Upload Static Assets to Azure Storage
         uses: azure/CLI@v1
         with:
           inlineScript: |
             az storage blob upload-batch --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --account-key ${{ secrets.STORAGE_ACCOUNT_KEY }} --destination ${{ secrets.DESTINATION_PATH }} --source ${{ steps.determine_path.outputs.artifact_path }}
-          ###### End of Repository/Build Configurations ######
+      
+      # - name: Set Cache-Control
+      #   uses: azure/CLI@v1
+      #   with:
+      #     inlineScript: |
+      #       az storage blob update-batch --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --account-key ${{ secrets.STORAGE_ACCOUNT_KEY }} --destination ${{ secrets.DESTINATION_PATH }} --metadata "Cache-Control=public,max-age=259200"
+      ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
