@@ -35,7 +35,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob delete-batch --account-name imquery --account-key gyMeX+XDy5uD/V1BdYr4hN5BzDEeYnAOUoOStdrHLS5OPZBNgbcR9ThSrdMdhvU2y27pona66RU5+AStWJqMdA== --source next --pattern "*"
+            az storage blob delete-batch --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --account-key ${{ secrets.STORAGE_ACCOUNT_KEY }} --source next --pattern "*"
       - name: Determine Artifact Path
         id: determine_path
         run: |
@@ -51,7 +51,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob upload-batch --account-name imquery --account-key gyMeX+XDy5uD/V1BdYr4hN5BzDEeYnAOUoOStdrHLS5OPZBNgbcR9ThSrdMdhvU2y27pona66RU5+AStWJqMdA== --destination next/_next/static --source ${{ steps.determine_path.outputs.artifact_path }}
+            az storage blob upload-batch --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --account-key ${{ secrets.STORAGE_ACCOUNT_KEY }} --destination ${{ secrets.DESTINATION_PATH }} --source ${{ steps.determine_path.outputs.artifact_path }}
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
